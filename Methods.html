@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods</title>
+    <style id="newStyle">
+    </style>
+</head>
+<body>
+
+    <article>
+        <p>Alphabet</p>
+        <section>    
+        <p style=""> A B C D E F G </p>
+        <p style="">come on out and play with me.</p>
+        <p>H I J </p>
+        <p>come and play.</p> 
+        <p>K L M </p>
+        <p>come with them. </p>
+        <p>N O P </p>
+        <p>near the tree. </p>
+        <p>Q R S T U V </p>
+        <p>Oh, how happy we will be. </p>
+        <p>W X Y Z </p>
+        <p>Lot's of fun for you and me. </p>
+        </section>
+    </article>    
+    
+    <div id="box">
+        
+    </div>
+
+<button id="but1" onclick="change()">Изменить</button>
+
+
+
+    <script>
+
+        //выбор всех букв анлийского алфавита с помощью метода querySelectorAll
+        let alphabet = document.querySelectorAll('section > p:nth-child(odd)');
+        let box = document.getElementById('box');
+
+
+        function change(){
+            // Вывод букв в отдельный тег <div id='box'>
+            for (i = 0; i < alphabet.length; i++){
+                box.innerHTML += alphabet[i].textContent;
+            }
+
+            //выбор всех тегов <p> внутри тега <section> с помощью метода getElementsByTagName
+            let section = document.querySelector('section');
+            let arrP = section.getElementsByTagName('p');
+            
+            //стили для тегов <p> внутри тега <section>
+            let myStyle = {
+                border: '3px solid black',
+                fontFamily: 'Arial, Helvetica, sans-serif',
+                fontSize: '30px',
+                backgroundColor: 'blue',
+                fontWeight: 'bold',
+                color: 'magenta',
+                fontStyle: 'italic',
+            };
+            
+
+            // добавление стилей в теги <p> внутри тега <section>
+            for (j = 0; j < arrP.length; j++){
+                for (key in myStyle){
+                    arrP[j].setAttribute('style', `${key}: ${myStyle[key]};`); //устанавливает только последний стиль с "camelStyle"
+
+                    arrP[j].style.key = myStyle[key]; //не работает
+                    // arrP[j].style.fontStyle = 'italic'; //работает
+                }
+
+            }
+
+        }
+        
+
+    </script>
+</body>
+</html>
