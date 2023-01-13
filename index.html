@@ -12,7 +12,7 @@
 
     <article>
         <p>Alphabet</p>
-        <section>    
+        <section id="here">    
         <p> A B C D E F G </p>
         <p>come on out and play with me.</p>
         <p>H I J </p>
@@ -28,7 +28,7 @@
         </section>
     </article>    
     
-    <div id="box">
+    <div id="alphabetBox">
         
     </div>
 
@@ -40,39 +40,47 @@
 
         //выбор всех букв анлийского алфавита с помощью метода querySelectorAll
         let alphabet = document.querySelectorAll('section > p:nth-child(odd)');
-        let box = document.getElementById('box');
+        let alphabetBox = document.getElementById('alphabetBox');
 
 
         function change(){
-            // Вывод букв в отдельный тег <div id='box'>
+            // Вывод букв в отдельный тег <div id='alphabetBox'>
             for (i = 0; i < alphabet.length; i++){
-                box.innerHTML += alphabet[i].textContent;
+                alphabetBox.innerHTML += alphabet[i].textContent;
             }
 
-            //выбор всех тегов <p> внутри тега <section> с помощью метода getElementsByTagName
-            let section = document.querySelector('section');
-            let arrP = section.getElementsByTagName('p');
-            
-            //стили для тегов <p> внутри тега <section>
-            let myStyle = {
-                border: '3px solid black',
-                fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: '30px',
-                backgroundColor: 'blue',
-                fontWeight: 'bold',
-                color: 'magenta',
-                fontStyle: 'italic',
-            };
+            //выбор всех тегов <p> внутри тега <section id="here"> с помощью метода getElementsByTagName
+            let here = document.getElementById('here');
+            let arrP = here.getElementsByTagName('p');
             
 
+            
+            
             // добавление стилей в теги <p> внутри тега <section>
-            for (j = 0; j < arrP.length; j++){
-                for (key in myStyle){
-                    arrP[j].setAttribute('style', `${key}: ${myStyle[key]};`); //устанавливает только последний стиль с "camelStyle"
+                for (j = 0; j < arrP.length; j++){
+                    let symbol = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+                    let fontColor = ''; 
+                    let backgroundColor = ''; 
+                    
+                    for (k = 0; k < 6; k++){
+                        let randomSymbol = Math.floor(Math.random() * symbol.length);
+                        backgroundColor += symbol[randomSymbol];
+                    }
+                    
+                    for (k = 0; k < 6; k++){
+                        let randomSymbol = Math.floor(Math.random() * symbol.length);
+                        fontColor += symbol[randomSymbol];
+                    }
 
-                    arrP[j].style.key = myStyle[key]; //не работает
-                    // arrP[j].style.fontStyle = 'italic'; //работает
-                }
+                    arrP[j].style.cssText = `
+                        border: 3px solid black;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 30px;
+                        background-color: #${backgroundColor};
+                        font-weight: bold;
+                        color: #${fontColor};
+                        font-style: italic;
+                    `;
 
             }
 
